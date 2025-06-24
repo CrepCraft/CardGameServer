@@ -1,9 +1,19 @@
-import ru.labs.cards.service.Client;
+package ru.labs.cards;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import ru.labs.cards.service.Client;
 
 import java.util.Scanner;
 
-public class Main {
+@SpringBootApplication
+public class MainApplication {
     public static void main(String[] args) {
+        SpringApplication.run(MainApplication.class, args);
+        //check();
+    }
+
+    /*private static void check() {
         Client client = new Client();
         Client client2 = new Client();
         client.registration();
@@ -36,5 +46,5 @@ public class Main {
             }
             activePlayerIndex = activePlayerIndex == 0 ? 1 : 0;
         }
-    }
+    }*/
 }

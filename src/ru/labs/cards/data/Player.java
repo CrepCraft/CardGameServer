@@ -12,7 +12,7 @@ public class Player {
     private List<Card> myCards = new ArrayList<>();
     private int gameIndex = -1;
     private boolean isPassed = false;
-    private boolean drawACard = false;
+    //private boolean drawACard = false;
     public Player(String name, String surname) {
         this.name = name;
         this.surname = surname;
@@ -22,13 +22,13 @@ public class Player {
         return surname;
     }
 
-    public boolean isDrawACard() {
+    /*public boolean isDrawACard() {
         return drawACard;
     }
 
     public void setDrawACard(boolean drawACard) {
         this.drawACard = drawACard;
-    }
+    }*/
 
     public PlayerStatus getStatus() {
         return status;
@@ -66,7 +66,7 @@ public class Player {
         myCards.add(card);
     }
 
-    public int turnDecision() {
+    /*public int turnDecision() {
         System.out.println("\nYour cards: ");
         for (var card : myCards) {
             System.out.println(card.value() + "; ");
@@ -83,5 +83,5 @@ public class Player {
             }
             return res;
         }
-    }
+    }*/
 }

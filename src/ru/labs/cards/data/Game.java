@@ -9,18 +9,37 @@ public class Game {
     private List<Player> activePlayers = new ArrayList<>();
     private List<Card> deck = new ArrayList<>();
     private boolean allPlayersPassed = false;
-
     public Game(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Card> getDeck() {
+        return deck;
+    }
+
+    public boolean isAllPlayersPassed() {
+        return allPlayersPassed;
+    }
+
+    public void setAllPlayersPassed(boolean allPlayersPassed) {
+        this.allPlayersPassed = allPlayersPassed;
     }
 
     public List<Player> getActivePlayers() {
         return activePlayers;
     }
 
-    public void addPlayer(Player player) {
+    /*public void addPlayer(Player player) {
         activePlayers.add(player);
-    }
+    }*/
 
     public void createDeck() {
         for (int i = 2; i < 12; i++) {
@@ -42,14 +61,14 @@ public class Game {
             Card card = (Card) (deck.toArray()[ind]);
             player.addCard(card);
         }
-        gameProcess();
+        //gameProcess();
     }
 
     public void giveCard(Player player) {
         Random rnd = new Random();
         int ind = rnd.nextInt(deck.size());
         Card card = (Card) (deck.toArray()[ind]);
-        player.addCard(card);
+        player.getMyCards().add(card);
     }
 
     public void winCheck(Player player) {
@@ -58,7 +77,6 @@ public class Game {
             totalValue += card.value();
         }
         if (totalValue >= 21) {
-            player.setPassed(true);
             allPlayersPassed = true;
         }
     }
@@ -74,36 +92,36 @@ public class Game {
             cnt++;
         }
         if (totalValue[0] > 21) {
-            activePlayers.get(1).setStatus(PlayerStatus.WON);
-            activePlayers.get(0).setStatus(PlayerStatus.LOSE);
+            activePlayers.get(1).setStatus(PlayerStatus.PLAYER_WON);
+            activePlayers.get(0).setStatus(PlayerStatus.PLAYER_LOST);
         } else if (totalValue[1] > 21) {
-            activePlayers.get(0).setStatus(PlayerStatus.WON);
-            activePlayers.get(1).setStatus(PlayerStatus.LOSE);
+            activePlayers.get(0).setStatus(PlayerStatus.PLAYER_WON);
+            activePlayers.get(1).setStatus(PlayerStatus.PLAYER_LOST);
         } else if (totalValue[0] > totalValue[1]) {
-            activePlayers.get(0).setStatus(PlayerStatus.WON);
-            activePlayers.get(1).setStatus(PlayerStatus.LOSE);
+            activePlayers.get(0).setStatus(PlayerStatus.PLAYER_WON);
+            activePlayers.get(1).setStatus(PlayerStatus.PLAYER_LOST);
         } else if (totalValue[0] < totalValue[1]) {
-            activePlayers.get(1).setStatus(PlayerStatus.WON);
-            activePlayers.get(0).setStatus(PlayerStatus.LOSE);
+            activePlayers.get(1).setStatus(PlayerStatus.PLAYER_WON);
+            activePlayers.get(0).setStatus(PlayerStatus.PLAYER_LOST);
         } else {
             activePlayers.get(0).setStatus(PlayerStatus.DRAW);
             activePlayers.get(1).setStatus(PlayerStatus.DRAW);
         }
     }
 
-    public void closeGame() {
+    /*public void closeGame() {
         for (var player : activePlayers) {
             player.getMyCards().clear();
-            player.setStatus(PlayerStatus.WAITING);
+            player.setStatus(PlayerStatus.WAIT_OPPONENT_CONNECTION);
             player.setGameIndex(-1);
             player.setPassed(false);
         }
         deck.clear();
         activePlayers.clear();
         allPlayersPassed = false;
-    }
+    }*/
 
-    public void gameProcess() {
+    /*public void gameProcess() {
         if (!allPlayersPassed) {
             if (activePlayers.get(0).isDrawACard() || activePlayers.get(1).isDrawACard()) {
                 for (var player : activePlayers) {
@@ -127,5 +145,5 @@ public class Game {
         } else {
             endGame();
         }
-    }
+    }*/
 }

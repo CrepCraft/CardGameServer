@@ -1,4 +1,4 @@
-package ru.labs.cards.service;
+/*package ru.labs.cards.service;
 
 import ru.labs.cards.data.Player;
 import ru.labs.cards.data.PlayerStatus;
@@ -10,7 +10,7 @@ public class Client {
 
     public void registration() {
         Player player = new Player("Player_" + Server.getPlayersNumber(), "abc");
-        player.setStatus(PlayerStatus.WAITING);
+        player.setStatus(PlayerStatus.WAIT_OPPONENT_CONNECTION);
         Server.getPlayers().put(Server.getPlayersNumber(), player);
         id = "" + Server.getPlayersNumber();
         Server.setPlayersNumber(Server.getPlayersNumber() + 1);
@@ -43,9 +43,9 @@ public class Client {
         if (Server.getGames().get(gameID).getActivePlayers().size() != 1) {
             for (var item : Server.getGames().get(player.getGameIndex()).getActivePlayers()) {
                 if (Server.getGames().get(item.getGameIndex()).getActivePlayers().get(0) == item) {
-                    item.setStatus(PlayerStatus.YOUR_TURN);
+                    item.setStatus(PlayerStatus.PLAYER_MOVE);
                 } else {
-                    item.setStatus(PlayerStatus.OPPONENT_TURN);
+                    item.setStatus(PlayerStatus.OPPONENT_MOVE);
                 }
             }
             Server.getGames().get(gameID).startGame();
@@ -54,7 +54,7 @@ public class Client {
 
     public void leaveGame() {
         for (var item : Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).getActivePlayers()) {
-            item.setStatus(PlayerStatus.WAITING);
+            item.setStatus(PlayerStatus.WAIT_OPPONENT_CONNECTION);
         }
         Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).closeGame();
         Server.getPlayers().remove(id);
@@ -62,7 +62,7 @@ public class Client {
 
     public void leaveServer() {
         for (var item : Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).getActivePlayers()) {
-            item.setStatus(PlayerStatus.WAITING);
+            item.setStatus(PlayerStatus.WAIT_OPPONENT_CONNECTION);
         }
         Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).closeGame();
         Server.getPlayers().remove(id);
@@ -71,13 +71,13 @@ public class Client {
     public void drawACard() {
         Player player = Server.getPlayers().get(id);
         player.setDrawACard(true);
-        Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).gameProcess();
+        //Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).gameProcess();
     }
 
     public void pass() {
         Player player = Server.getPlayers().get(id);
         player.setPassed(true);
-        Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).gameProcess();
+        //Server.getGames().get(Server.getPlayers().get(id).getGameIndex()).gameProcess();
     }
 
     public void getGameInfo() {
@@ -86,4 +86,4 @@ public class Client {
             System.out.println(player.getName() + "'s cards: " + player.getMyCards());
         }
     }
-}
+}*/
